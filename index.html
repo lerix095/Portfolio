@@ -532,7 +532,7 @@ function ri(t,img,imgs,caps){
   if(t==='multi'&&imgs){
     return imgs.map((src,i)=>{
       const cap=(caps&&caps[lang]&&caps[lang][i])?`<p class="img-cap">${caps[lang][i]}</p>`:'';
-      return`<div class="img-wrap" style="margin-bottom:40px"><img src="${src}" class="img-ph img-full" alt="" loading="lazy"></div>${cap}`;
+      return`<div style="margin-bottom:40px"><div class="img-wrap"><img src="${src}" class="img-ph img-full" alt="" loading="lazy"></div>${cap}</div>`;
     }).join('');
   }
   return'';
