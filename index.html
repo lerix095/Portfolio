@@ -471,7 +471,7 @@ function goHome(){
   showPage('home',document.querySelector('.nav-link[data-page="home"]'));
 }
 
-function showCase(id){
+function showCase(id){   window._currentCase=id;
   const c=CASES[id];
   setHeaderState('case');
   document.getElementById('backLabel').textContent=lang==='ru'?'Главная':'Home';
@@ -571,6 +571,9 @@ function toggleLang(){
   document.getElementById('langBtn2').textContent=lbl;
   document.getElementById('backLabel').textContent=lang==='ru'?'Главная':'Home';
   applyLang();
+      if(document.getElementById('page-case').classList.contains('active')&&window._currentCase){
+    showCase(window._currentCase);
+  }
 }
 
 function applyLang(){
