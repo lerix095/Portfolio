@@ -476,7 +476,7 @@ window.addEventListener('popstate',function(e){
   else showPage('home',null,false);
 });
 
-function showCase(id){   window._currentCase=id;
+function showCase(id,pushState=true){   window._currentCase=id;
   const c=CASES[id];
   setHeaderState('case');
   document.getElementById('backLabel').textContent=lang==='ru'?'Главная':'Home';
