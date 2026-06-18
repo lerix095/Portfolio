@@ -457,7 +457,7 @@ function setHeaderState(state){
   }
 }
 
-function showPage(name,el){
+function showPage(name,el,pushState=true){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById('page-'+name).classList.add('active');
   document.querySelectorAll('.nav-link').forEach(l=>l.classList.remove('active'));
