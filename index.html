@@ -470,6 +470,11 @@ function showPage(name,el,pushState=true){
 function goHome(){
   showPage('home',document.querySelector('.nav-link[data-page="home"]'));
 }
+window.addEventListener('popstate',function(e){
+  if(e.state&&e.state.type==='page') showPage(e.state.name,null,false);
+  else if(e.state&&e.state.type==='case') showCase(e.state.id,false);
+  else showPage('home',null,false);
+});
 
 function showCase(id){   window._currentCase=id;
   const c=CASES[id];
