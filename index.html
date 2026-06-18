@@ -461,7 +461,7 @@ function showPage(name,el,pushState=true){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById('page-'+name).classList.add('active');
   document.querySelectorAll('.nav-link').forEach(l=>l.classList.remove('active'));
-  if(el) el.classList.add('active');
+  if(el) el.classList.add('active');   else document.querySelector('.nav-link[data-page="'+name+'"]')?.classList.add('active');   if(pushState) history.pushState({type:'page',name},'','#'+name);
   setHeaderState('normal');
   window.onscroll=null;
   window.scrollTo(0,0);
