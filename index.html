@@ -525,6 +525,7 @@ function showCase(id,pushState=true){   window._currentCase=id;
   document.getElementById('page-case').classList.add('active');
   window.scrollTo(0,0);
   window.onscroll=updateSidebar;
+  if(pushState) history.pushState({type:'case',id},'','#case-'+id);
 }
 
 function ri(t,img,imgs,caps){
