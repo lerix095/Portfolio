@@ -577,6 +577,10 @@ function toggleLang(){
   document.getElementById('langBtn2').textContent=lbl;
   document.getElementById('backLabel').textContent=lang==='ru'?'Главная':'Home';
   applyLang();
+  const url=new URL(window.location.href);
+  if(lang==='en') url.searchParams.set('lang','en');
+  else url.searchParams.delete('lang');
+  history.replaceState({},'',url.toString());
       if(document.getElementById('page-case').classList.contains('active')&&window._currentCase){
     showCase(window._currentCase);
   }
