@@ -542,7 +542,7 @@ function ri(t,img,imgs,caps){
     return`<div class="screens-pair"><div class="scr scr-l"></div><div class="scr scr-r"></div></div>`;
   }
   if(t==='single'){
-    const el=img?`<img src="${img}" class="scr-c" alt="" loading="lazy">`:`<div class="scr-c"></div>`;
+    const el=img?`<img src="${img}" class="scr-c" alt="" loading="lazy" style="cursor:zoom-in" onclick="openLightbox('${img}')">`:`<div class="scr-c"></div>`;
     return`<div class="screen-single">${el}</div>`;
   }
   if(t==='multi'&&imgs){
