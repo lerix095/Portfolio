@@ -536,7 +536,7 @@ function ri(t,img,imgs,caps){
     const el=img?`<img src="${img}" class="img-ph img-full" alt="" loading="lazy" style="cursor:zoom-in" onclick="openLightbox('${img}')">`:`<div class="img-ph img-full"></div>`;
     return`<div class="img-wrap">${el}</div>`;
   }
-  if(t==='pair-web'&&imgs) return`<div class="screens-pair-web"><img src="${imgs[0]}" alt="" loading="lazy"><img src="${imgs[1]}" alt="" loading="lazy"></div>`;
+  if(t==='pair-web'&&imgs) return`<div class="screens-pair-web"><img src="${imgs[0]}" alt="" loading="lazy" style="cursor:zoom-in" onclick="openLightbox('${imgs[0]}')"><img src="${imgs[1]}" alt="" loading="lazy" style="cursor:zoom-in" onclick="openLightbox('${imgs[1]}')"></div>`;
   if(t==='pair'){
     if(imgs&&imgs.length>=2) return`<div class="screens-pair"><img src="${imgs[0]}" class="scr scr-l" alt="" loading="lazy" style="cursor:zoom-in" onclick="openLightbox('${imgs[0]}')"><img src="${imgs[1]}" class="scr scr-r" alt="" loading="lazy" style="cursor:zoom-in" onclick="openLightbox('${imgs[1]}')"></div>`;
     return`<div class="screens-pair"><div class="scr scr-l"></div><div class="scr scr-r"></div></div>`;
