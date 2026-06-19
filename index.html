@@ -533,7 +533,7 @@ function showCase(id,pushState=true){   window._currentCase=id;
 
 function ri(t,img,imgs,caps){
   if(t==='full'){
-    const el=img?`<img src="${img}" class="img-ph img-full" alt="" loading="lazy">`:`<div class="img-ph img-full"></div>`;
+    const el=img?`<img src="${img}" class="img-ph img-full" alt="" loading="lazy" style="cursor:zoom-in" onclick="openLightbox('${img}')">`:`<div class="img-ph img-full"></div>`;
     return`<div class="img-wrap">${el}</div>`;
   }
   if(t==='pair-web'&&imgs) return`<div class="screens-pair-web"><img src="${imgs[0]}" alt="" loading="lazy"><img src="${imgs[1]}" alt="" loading="lazy"></div>`;
