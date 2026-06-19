@@ -538,7 +538,7 @@ function ri(t,img,imgs,caps){
   }
   if(t==='pair-web'&&imgs) return`<div class="screens-pair-web"><img src="${imgs[0]}" alt="" loading="lazy"><img src="${imgs[1]}" alt="" loading="lazy"></div>`;
   if(t==='pair'){
-    if(imgs&&imgs.length>=2) return`<div class="screens-pair"><img src="${imgs[0]}" class="scr scr-l" alt="" loading="lazy"><img src="${imgs[1]}" class="scr scr-r" alt="" loading="lazy"></div>`;
+    if(imgs&&imgs.length>=2) return`<div class="screens-pair"><img src="${imgs[0]}" class="scr scr-l" alt="" loading="lazy" style="cursor:zoom-in" onclick="openLightbox('${imgs[0]}')"><img src="${imgs[1]}" class="scr scr-r" alt="" loading="lazy" style="cursor:zoom-in" onclick="openLightbox('${imgs[1]}')"></div>`;
     return`<div class="screens-pair"><div class="scr scr-l"></div><div class="scr scr-r"></div></div>`;
   }
   if(t==='single'){
