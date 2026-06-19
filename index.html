@@ -613,7 +613,7 @@ function applyLang(){
   s('bio-1',t.b1);s('bio-2',t.b2);s('bio-3',t.b3);s('bio-4',t.b4);s('bio-5',t.b5);
 }
 
-(function(){   if(localStorage.getItem('theme')==='dark')document.documentElement.setAttribute('data-theme','dark');   const urlLang=new URLSearchParams(window.location.search).get('lang');   if(urlLang==='en'&&lang!=='en'){lang='en';document.getElementById('langBtn').textContent='EN';document.getElementById('langBtn2').textContent='EN';applyLang();} })();
+(function(){   if(localStorage.getItem('theme')==='dark')document.documentElement.setAttribute('data-theme','dark');   const urlLang=new URLSearchParams(window.location.search).get('lang');   if(urlLang==='en'&&lang!=='en'){lang='en';document.getElementById('langBtn').textContent='EN';document.getElementById('langBtn2').textContent='EN';applyLang();}   const hash=window.location.hash.replace('#','');   if(hash&&hash.startsWith('case-')){     const caseId=hash.replace('case-','');     if(CASES[caseId]) showCase(caseId,false);   } else if(hash&&['home','about','cv','concepts'].includes(hash)){     showPage(hash,null,false);   } })();
 </script>
 </body>
 </html>
