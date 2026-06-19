@@ -232,6 +232,9 @@ img.scr-l,img.scr-r,img.scr-c{object-fit:cover;background:transparent}
 .scr-l{left:61px;top:2px}.scr-r{right:61px;top:2px}
 .screen-single{width:656px;height:508px;position:relative;margin:0 -8px}
 .scr-c{position:absolute;left:205px;top:2px;width:245px;height:502px;border-radius:8px;background:var(--c-surface)}
+.lightbox{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.9);z-index:1000;cursor:zoom-out;align-items:center;justify-content:center}
+.lightbox.open{display:flex}
+.lightbox img{max-width:90vw;max-height:90vh;object-fit:contain;border-radius:8px}
 .screens-pair-web{display:flex;flex-direction:column;gap:40px;margin:0 -8px}
 .screens-pair-web img{width:656px;height:auto;border-radius:8px}
 .scr{position:absolute;width:245px;height:502px;border-radius:8px;background:var(--c-surface);object-fit:cover}
@@ -427,7 +430,7 @@ img.scr-l,img.scr-r,img.scr-c{object-fit:cover;background:transparent}
 </div>
 
 <!-- Sidebar lives OUTSIDE .page divs so position:fixed always works -->
-<aside class="case-sidebar" id="caseSidebar" style="display:none"></aside>
+<aside class="case-sidebar" id="caseSidebar" style="display:none"></aside> <div class="lightbox" id="lightbox" onclick="closeLightbox()"><img id="lightboxImg" src="" alt=""></div>
 
 <script>
 const CASES={
