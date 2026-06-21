@@ -268,19 +268,38 @@ img.scr-l,img.scr-r,img.scr-c{object-fit:cover;background:transparent}
   .col,.case-col,.site-footer{padding-left:220px;padding-right:40px}
   .case-sidebar{display:none}
 }
-@media(max-width:820px){
-  .col,.case-col,.site-footer{padding-left:24px;padding-right:24px;padding-top:80px}
-  .col-inner,.case-inner{width:100%}
-  .img-full,.screens-pair,.screen-single{width:100%;margin:0}
-  .img-full{height:200px}
-  .screens-pair{height:220px}
-  .scr{width:46%;height:210px;top:0}.scr-l,.scr-r{left:auto;right:auto;top:auto}   .screen-single{height:auto}   .scr-c{position:static;width:70%;height:auto;min-height:200px;margin:0 auto;display:block}
-  .case-info{width:auto;flex:1;margin-left:12px}
+@media(max-width:768px){
+  /* Layout */
+  .col,.case-col,.site-footer{padding-left:16px;padding-right:16px;padding-top:72px}
+  .col-inner,.case-inner{width:100%;max-width:100%}
+  .case-sidebar{display:none!important}
+  /* Header background */
+  .header{background:var(--c-bg)}
+  /* Cases list */
+  .case-info{width:auto;flex:1;margin-left:8px}
+  .case-row{height:auto;min-height:44px}
+  .case-type{font-size:12px;min-width:60px}
+  .case-name{font-size:14px}
+  .case-cat{font-size:12px}
+  /* Full-width images (web screens) */
+  .img-wrap{margin:0}
+  .img-full{width:100%;height:auto}
+  /* Mobile screens — centered, 245px wide */
+  .screens-pair{width:100%;height:auto;display:flex;flex-direction:column;align-items:center;gap:24px;margin:0;position:static}
+  .scr{position:static;width:245px;height:auto;min-height:400px}
+  .scr-l,.scr-r{left:auto;right:auto;top:auto}
+  .screen-single{width:100%;height:auto;margin:0;position:static}
+  .scr-c{position:static;width:245px;height:auto;min-height:400px;margin:0 auto;display:block;left:auto;top:auto}
+  /* Pair-web — full width vertical */
+  .screens-pair-web{margin:0}
+  .screens-pair-web img{width:100%;height:auto}
+  /* Concepts */
+  .concept-imgs img{width:100%!important;height:auto!important}
 }
 @media(max-width:540px){
   .nav-links{gap:12px}
-  .case-row{height:auto;min-height:44px;flex-wrap:wrap}
-  .case-info{flex-direction:column;align-items:flex-start;gap:1px}
+  .case-row{flex-wrap:wrap;gap:4px}
+  .case-info{flex-direction:column;align-items:flex-start;gap:2px}
 }
 </style>
 </head>
