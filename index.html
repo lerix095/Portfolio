@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Валерий Проценко — Дизайн-инженер</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Reenie+Beanie&display=swap" rel="stylesheet"> <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='black'/%3E%3C/svg%3E">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Reenie+Beanie&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='50' fill='black'/%3E%3C/svg%3E">
 <style>
 /* ─── TOKENS ─── */
 :root{
@@ -24,34 +25,23 @@
 
 /* ─── RESET ─── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{-webkit-font-smoothing:antialiased}
+html{-webkit-font-smoothing:antialiased;overflow-x:hidden}
 body{font-family:var(--font);background:var(--c-bg);color:var(--c-primary);
-     transition:background .2s,color .2s;min-height:100vh}
+     transition:background .2s,color .2s;min-height:100vh;overflow-x:hidden}
 button{background:none;border:none;cursor:pointer;font-family:inherit}
 a{color:inherit;text-decoration:none}
 
 /* ─── HEADER ─── */
-/* Transparent, centered 1280px container — same max-width as content */
 .header{
   position:fixed;top:0;left:0;right:0;z-index:100;
-  /* no background */
 }
 .header-inner{
   max-width:var(--page-max);margin:0 auto;
   padding:0 20px;height:40px;
   display:flex;align-items:center;justify-content:space-between;
 }
-
-/* Normal nav (home/concepts/about/cv) */
 .header-normal{display:flex;align-items:center;justify-content:space-between;width:100%}
 .nav-links{display:flex;gap:20px;align-items:center}
-
-/*
-  linkHeader component states (from Figma):
-  default  — no underline
-  hover    — underline, color: borderPrimary (#cfcfcf / dark: #333)
-  active   — underline, color: textPrimary (#000 / dark: #fff)
-*/
 .nav-link{
   font-size:13px;font-weight:400;line-height:16px;
   color:var(--c-primary);white-space:nowrap;cursor:pointer;
@@ -61,13 +51,8 @@ a{color:inherit;text-decoration:none}
   transition:text-decoration-color var(--tr);
   user-select:none;
 }
-.nav-link:hover{
-  text-decoration-color:var(--c-border); /* borderPrimary — grey */
-}
-.nav-link.active{
-  text-decoration-color:var(--c-primary); /* textPrimary — black/white */
-}
-
+.nav-link:hover{text-decoration-color:var(--c-border)}
+.nav-link.active{text-decoration-color:var(--c-primary)}
 .header-right{display:flex;align-items:center;gap:20px}
 .lang-btn{
   font-size:13px;font-weight:400;line-height:16px;color:var(--c-primary);
@@ -79,8 +64,6 @@ a{color:inherit;text-decoration:none}
            display:flex;align-items:center;justify-content:center}
 .theme-dot{width:10px;height:10px;border-radius:12px;background:var(--c-primary);
            transition:background .2s;pointer-events:none}
-
-/* Case header (state=toHome) */
 .header-case{display:none;align-items:center;justify-content:space-between;width:100%}
 .header-case.visible{display:flex}
 .back-btn{
@@ -89,7 +72,6 @@ a{color:inherit;text-decoration:none}
   color:var(--c-secondary);transition:color var(--tr);padding:0;
 }
 .back-btn:hover{color:var(--c-primary)}
-/* iconBack SVG — exact file provided, stroke adapts to theme via filter */
 .back-icon{
   width:12px;height:12px;flex-shrink:0;display:block;
   background-image:url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M4.71434 10.2857L1.28577 6.85714L4.71434 3.42857M1.28577 6.85714H8.57148C9.75494 6.85714 10.7143 5.89775 10.7143 4.71429C10.7143 3.53082 9.75494 2.57143 8.57148 2.57143H7.28577' stroke='%236C6C6C'/%3E%3C/svg%3E");
@@ -172,26 +154,9 @@ a{color:inherit;text-decoration:none}
 
 /* ─── CASE PAGES ─── */
 .case-layout{padding-top:40px;min-height:100vh;display:flex;flex-direction:column}
-
-/*
-  Sidebar: fixed, inside the same 1280px centered container as the header.
-  Left edge = 20px from the container's left edge (not from viewport edge).
-  We achieve this by setting left to: calc(50% - 640px + 20px)
-  640px = half of 1280px page-max.
-  This keeps sidebar aligned with the header text "Главная".
-*/
-/*
-  Sidebar: fixed, left-aligned within the 1280px page container.
-  Uses the same centering trick as the header:
-  left = 50vw - 640px + 20px  (half of page-max = 640px, then 20px inset)
-  This mirrors exactly where "Главная" sits in the header.
-  On viewports ≤ 1280px the formula naturally shifts with the page center.
-*/
-.sidebar-wrap{ display:contents } /* no wrapper needed — sidebar is self-contained */
+.sidebar-wrap{display:contents}
 .case-sidebar{
-  position:fixed;
-  top:160px;
-  /* align with left edge of 1280px container + 20px padding */
+  position:fixed;top:160px;
   left:max(20px, calc(50vw - 620px));
   width:200px;
   display:flex;flex-direction:column;gap:12px;
@@ -203,6 +168,7 @@ a{color:inherit;text-decoration:none}
   user-select:none;
 }
 .sidebar-item:hover,.sidebar-item.active{color:var(--c-primary)}
+@media(max-width:820px){.case-sidebar{display:none!important}}
 
 .case-col{
   flex:1;width:100%;max-width:var(--page-max);margin:0 auto;
@@ -219,29 +185,34 @@ a{color:inherit;text-decoration:none}
 
 .case-block{margin-bottom:60px;padding:0 8px}
 .case-block-title{font-size:14px;font-weight:500;line-height:20px;margin-bottom:8px}
-.case-block-desc{font-size:14px;font-weight:400;line-height:20px;color:var(--c-primary);margin-bottom:24px} .case-block-result .case-block-desc{color:var(--c-primary)}
+.case-block-desc{font-size:14px;font-weight:400;line-height:20px;color:var(--c-primary);margin-bottom:24px}
+.case-block-result .case-block-desc{color:var(--c-primary)}
 
+/* ─── IMAGES ─── */
 .img-wrap{margin:0 -8px}
 .img-ph{border-radius:8px;background:var(--c-surface);transition:background .2s;display:block}
-.img-full{width:656px;height:auto;max-height:600px;object-fit:contain;background:transparent}
+.img-full{width:656px;height:auto;max-height:800px;object-fit:contain;background:transparent}
 img.scr-l,img.scr-r,img.scr-c{object-fit:cover;background:transparent}
 .img-cap{font-size:12px;font-weight:400;line-height:16px;color:var(--c-secondary);margin-top:12px;padding:0 8px;text-align:center}
 
+/* Desktop: pair — two mobile screens side by side */
 .screens-pair{width:656px;height:508px;position:relative;margin:0 -8px}
 .scr{position:absolute;width:245px;height:502px;border-radius:8px;background:var(--c-surface)}
-.scr-l{left:61px;top:2px}.scr-r{right:61px;top:2px}
+.scr-l{left:61px;top:2px}
+.scr-r{right:61px;top:2px}
+/* Desktop: single mobile screen centered */
 .screen-single{width:656px;height:508px;position:relative;margin:0 -8px}
 .scr-c{position:absolute;left:205px;top:2px;width:245px;height:502px;border-radius:8px;background:var(--c-surface)}
+/* Desktop: pair-web — two web screens vertically */
+.screens-pair-web{display:flex;flex-direction:column;gap:40px;margin:0 -8px}
+.screens-pair-web img{width:656px;height:auto;border-radius:8px}
+
+/* ─── LIGHTBOX ─── */
 .lightbox{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.9);z-index:1000;cursor:zoom-out;align-items:center;justify-content:center}
 .lightbox.open{display:flex}
 .lightbox img{max-width:90vw;max-height:90vh;object-fit:contain;border-radius:8px}
-.screens-pair-web{display:flex;flex-direction:column;gap:40px;margin:0 -8px}
-.screens-pair-web img{width:656px;height:auto;border-radius:8px}
-.scr{position:absolute;width:245px;height:502px;border-radius:8px;background:var(--c-surface);object-fit:cover}
-.scr-l{left:61px;top:2px}.scr-r{right:61px;top:2px}
-.screen-single{width:656px;height:508px;position:relative;margin:0 -8px}
-.scr-c{position:absolute;left:205px;top:2px;width:245px;height:502px;border-radius:8px;background:var(--c-surface)}
 
+/* ─── CASE NAV ─── */
 .case-nav{padding:0 8px;margin-top:20px;margin-bottom:60px}
 .case-nav-row1{display:flex;justify-content:space-between;margin-bottom:4px}
 .case-nav-row2{display:flex;justify-content:space-between}
@@ -253,7 +224,7 @@ img.scr-l,img.scr-r,img.scr-c{object-fit:cover;background:transparent}
 .timeline{display:flex;flex-direction:column;gap:40px;padding:0 8px}
 .tl-year{font-size:14px;font-weight:500;line-height:20px;margin-bottom:8px}
 .tl-desc{font-size:14px;font-weight:400;line-height:20px;color:var(--c-secondary)}
-.about-photo{width:430px;height:321px;border-radius:8px;background:var(--c-surface);display:block;margin:0 auto}
+.about-photo{width:430px;height:auto;border-radius:8px;background:var(--c-surface);display:block;margin:0 auto}
 .about-photo-cap{font-size:12px;font-weight:400;line-height:16px;color:var(--c-secondary);margin-top:12px;text-align:center}
 
 /* ─── CONCEPTS ─── */
@@ -268,38 +239,69 @@ img.scr-l,img.scr-r,img.scr-c{object-fit:cover;background:transparent}
   .col,.case-col,.site-footer{padding-left:220px;padding-right:40px}
   .case-sidebar{display:none}
 }
+
 @media(max-width:768px){
-  /* Layout */
-  .col,.case-col,.site-footer{padding-left:16px;padding-right:16px;padding-top:72px}
+  /* Prevent horizontal scroll */
+  html,body{overflow-x:hidden;max-width:100vw}
+
+  /* Header — fixed with background */
+  .header{background:var(--c-bg);transition:background .2s}
+
+  /* Layout — 16px paddings */
+  .col,.case-col{padding-left:16px;padding-right:16px;padding-top:72px}
+  .site-footer{padding-left:16px;padding-right:16px}
   .col-inner,.case-inner{width:100%;max-width:100%}
+
+  /* Sidebar — hide */
   .case-sidebar{display:none!important}
-  /* Header background */
-  .header{background:var(--c-bg)}
+
   /* Cases list */
   .case-info{width:auto;flex:1;margin-left:8px}
   .case-row{height:auto;min-height:44px}
-  .case-type{font-size:12px;min-width:60px}
-  .case-name{font-size:14px}
-  .case-cat{font-size:12px}
-  /* Full-width images (web screens) */
+  .case-name{white-space:normal}
+
+  /* Full-width web images */
   .img-wrap{margin:0}
-  .img-full{width:100%;height:auto}
-  /* Mobile screens — centered, 245px wide */
-  .screens-pair{width:100%;height:auto;display:flex;flex-direction:column;align-items:center;gap:24px;margin:0;position:static}
-  .scr{position:static;width:245px;height:auto;min-height:400px}
+  .img-full{width:100%;max-width:100%;height:auto}
+
+  /* Pair of mobile screens — vertical, centered, 245px wide */
+  .screens-pair{
+    width:100%;height:auto;
+    display:flex;flex-direction:column;align-items:center;
+    gap:24px;margin:0;position:static;
+  }
+  .scr{position:static;width:245px;height:auto;min-height:480px}
   .scr-l,.scr-r{left:auto;right:auto;top:auto}
+
+  /* Single mobile screen — centered, 245px */
   .screen-single{width:100%;height:auto;margin:0;position:static}
-  .scr-c{position:static;width:245px;height:auto;min-height:400px;margin:0 auto;display:block;left:auto;top:auto}
-  /* Pair-web — full width vertical */
-  .screens-pair-web{margin:0}
+  .scr-c{
+    position:static;width:245px;height:auto;min-height:480px;
+    margin:0 auto;display:block;left:auto;top:auto;
+  }
+
+  /* Pair-web — full width, vertical */
+  .screens-pair-web{margin:0;gap:24px}
   .screens-pair-web img{width:100%;height:auto}
-  /* Concepts */
+
+  /* Concepts images */
   .concept-imgs img{width:100%!important;height:auto!important}
+  .concept-imgs div[style*="display:flex"]{flex-direction:column!important}
+  .concept-imgs div[style*="display:flex"] img{flex:none!important;width:245px!important;margin:0 auto;display:block}
+
+  /* About photo */
+  .about-photo{width:100%;height:auto}
+
+  /* Footer */
+  .footer-inner{width:100%}
 }
+
 @media(max-width:540px){
   .nav-links{gap:12px}
   .case-row{flex-wrap:wrap;gap:4px}
+  .case-type{font-size:12px}
   .case-info{flex-direction:column;align-items:flex-start;gap:2px}
+  .case-cat{font-size:12px}
 }
 </style>
 </head>
@@ -308,7 +310,6 @@ img.scr-l,img.scr-r,img.scr-c{object-fit:cover;background:transparent}
 <!-- HEADER -->
 <header class="header">
   <div class="header-inner">
-    <!-- Normal state -->
     <div class="header-normal" id="headerNormal">
       <nav class="nav-links">
         <span class="nav-link active" data-page="home" data-ru="Главная" data-en="Home" onclick="showPage('home',this)">Главная</span>
@@ -321,7 +322,6 @@ img.scr-l,img.scr-r,img.scr-c{object-fit:cover;background:transparent}
         <button class="theme-btn" onclick="toggleTheme()"><span class="theme-dot"></span></button>
       </div>
     </div>
-    <!-- Case state (toHome) -->
     <div class="header-case" id="headerCase">
       <button class="back-btn" onclick="goHome()">
         <span class="back-icon"></span>
@@ -429,9 +429,9 @@ img.scr-l,img.scr-r,img.scr-c{object-fit:cover;background:transparent}
         </div>
         <div class="concept-block"><div class="concept-head"><p class="concept-title">Cyberpunk 2077</p><p class="concept-desc" data-ru="Концепт Game UI на примере сайта ААА-Game, 2021." data-en="Game UI concept based on an AAA-Game website, 2021.">Концепт Game UI на примере сайта ААА-Game, 2021.</p></div><div class="concept-imgs"><img class="img-ph" style="width:616px;height:auto" src="assets/cyber1.webp" alt=""><img class="img-ph" style="width:616px;height:auto" src="assets/cyber2.webp" alt=""><img class="img-ph" style="width:616px;height:auto" src="assets/cyber3.webp" alt=""></div></div>
         <div class="concept-block"><div class="concept-head"><p class="concept-title">Eminem</p><p class="concept-desc" data-ru="Концепт 2023 года. Просто для души, получил награду за UI от DProfile." data-en="2023 concept. Just for fun — won a UI award from DProfile.">Концепт 2023 года. Просто для души, получил награду за UI от DProfile.</p></div><div class="concept-imgs"><img class="img-ph" style="width:616px;height:auto" src="assets/eminem1.webp" alt=""><img class="img-ph" style="width:616px;height:auto" src="assets/eminem2.webp" alt=""><img class="img-ph" style="width:616px;height:auto" src="assets/eminem3.webp" alt=""></div></div>
-        <div class="concept-block"><div class="concept-head"><p class="concept-title">Mercedes-Benz</p><p class="concept-desc" data-ru="Решил попробовать свои силы в дизайне корпоративного сайта Mercedes-Benz, 2022." data-en="Tried my hand at redesigning the Mercedes-Benz corporate website, 2022.">Решил попробовать свои силы в дизайне корпоративного сайта Mercedes-Benz, 2022.</p></div><div class="concept-imgs"><div style="display:flex;gap:8px"><img style="flex:1;width:0;height:auto;border-radius:22px;object-fit:cover" src="assets/merz1.webp" alt=""><img style="flex:1;width:0;height:auto;border-radius:22px;object-fit:cover" src="assets/merz2.webp" alt=""><img style="flex:1;width:0;height:auto;border-radius:22px;object-fit:cover" src="assets/merz3.webp" alt=""></div><img class="img-ph" style="width:616px;height:auto" src="assets/merz4.webp" alt=""><img class="img-ph" style="width:616px;height:auto" src="assets/merz5.webp" alt=""></div></div>
+        <div class="concept-block"><div class="concept-head"><p class="concept-title">Mercedes-Benz</p><p class="concept-desc" data-ru="Решил попробовать свои силы в дизайне корпоративного сайта Mercedes-Benz, 2022." data-en="Tried my hand at redesigning the Mercedes-Benz corporate website, 2022.">Решил попробовать свои силы в дизайне корпоративного сайта Mercedes-Benz, 2022.</p></div><div class="concept-imgs"><div class="merz-row" style="display:flex;gap:8px"><img style="flex:1;width:0;height:auto;border-radius:22px;object-fit:cover" src="assets/merz1.webp" alt=""><img style="flex:1;width:0;height:auto;border-radius:22px;object-fit:cover" src="assets/merz2.webp" alt=""><img style="flex:1;width:0;height:auto;border-radius:22px;object-fit:cover" src="assets/merz3.webp" alt=""></div><img class="img-ph" style="width:616px;height:auto" src="assets/merz4.webp" alt=""><img class="img-ph" style="width:616px;height:auto" src="assets/merz5.webp" alt=""></div></div>
         <div class="concept-block"><div class="concept-head"><p class="concept-title">FILM</p><p class="concept-desc" data-ru="Один из первых web-дизайнов в Figma, 2019." data-en="One of my first web designs in Figma, 2019.">Один из первых web-дизайнов в Figma, 2019.</p></div><div class="concept-imgs"><img class="img-ph" style="width:616px;height:auto" src="assets/film.webp" alt=""></div></div>
-        <div class="concept-block"><div class="concept-head"><p class="concept-title" data-ru="Шоты" data-en="Shots">Шоты</p><p class="concept-desc">2020–2022</p></div><div class="concept-imgs"><div style="display:flex;gap:8px;margin-bottom:8px"><img style="flex:1;width:0;height:auto;border-radius:22px;object-fit:cover" src="assets/shot1.webp" alt=""><img style="flex:1;width:0;height:auto;border-radius:22px;object-fit:cover" src="assets/shot2.webp" alt=""><img style="flex:1;width:0;height:auto;border-radius:22px;object-fit:cover" src="assets/shot3.webp" alt=""></div><div style="display:flex;gap:8px"><img style="flex:1;width:0;height:auto;border-radius:22px;object-fit:cover" src="assets/shot4.webp" alt=""><img style="flex:1;width:0;height:auto;border-radius:22px;object-fit:cover" src="assets/shot5.webp" alt=""><img style="flex:1;width:0;height:auto;border-radius:22px;object-fit:cover" src="assets/shot6.webp" alt=""></div></div></div>
+        <div class="concept-block"><div class="concept-head"><p class="concept-title" data-ru="Шоты" data-en="Shots">Шоты</p><p class="concept-desc">2020–2022</p></div><div class="concept-imgs"><div class="shots-row" style="display:flex;gap:8px;margin-bottom:8px"><img style="flex:1;width:0;height:auto;border-radius:22px;object-fit:cover" src="assets/shot1.webp" alt=""><img style="flex:1;width:0;height:auto;border-radius:22px;object-fit:cover" src="assets/shot2.webp" alt=""><img style="flex:1;width:0;height:auto;border-radius:22px;object-fit:cover" src="assets/shot3.webp" alt=""></div><div class="shots-row" style="display:flex;gap:8px"><img style="flex:1;width:0;height:auto;border-radius:22px;object-fit:cover" src="assets/shot4.webp" alt=""><img style="flex:1;width:0;height:auto;border-radius:22px;object-fit:cover" src="assets/shot5.webp" alt=""><img style="flex:1;width:0;height:auto;border-radius:22px;object-fit:cover" src="assets/shot6.webp" alt=""></div></div></div>
       </div>
     </div>
     <footer class="site-footer"><div class="footer-inner"><span class="footer-text">Valeriy P. © 2026, v 1.0</span></div></footer>
@@ -448,8 +448,8 @@ img.scr-l,img.scr-r,img.scr-c{object-fit:cover;background:transparent}
   </div>
 </div>
 
-<!-- Sidebar lives OUTSIDE .page divs so position:fixed always works -->
-<aside class="case-sidebar" id="caseSidebar" style="display:none"></aside> <div class="lightbox" id="lightbox" onclick="closeLightbox()"><img id="lightboxImg" src="" alt=""></div>
+<aside class="case-sidebar" id="caseSidebar" style="display:none"></aside>
+<div class="lightbox" id="lightbox" onclick="closeLightbox()"><img id="lightboxImg" src="" alt=""></div>
 
 <script>
 const CASES={
@@ -483,7 +483,9 @@ function showPage(name,el,pushState=true){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById('page-'+name).classList.add('active');
   document.querySelectorAll('.nav-link').forEach(l=>l.classList.remove('active'));
-  if(el) el.classList.add('active');   else document.querySelector('.nav-link[data-page="'+name+'"]')?.classList.add('active');   if(pushState) history.pushState({type:'page',name},'','#'+name);
+  if(el) el.classList.add('active');
+  else document.querySelector('.nav-link[data-page="'+name+'"]')?.classList.add('active');
+  if(pushState) history.pushState({type:'page',name},'','#'+name);
   setHeaderState('normal');
   window.onscroll=null;
   window.scrollTo(0,0);
@@ -492,22 +494,22 @@ function showPage(name,el,pushState=true){
 function goHome(){
   showPage('home',document.querySelector('.nav-link[data-page="home"]'));
 }
+
 window.addEventListener('popstate',function(e){
   if(e.state&&e.state.type==='page') showPage(e.state.name,null,false);
   else if(e.state&&e.state.type==='case') showCase(e.state.id,false);
   else showPage('home',null,false);
 });
 
-function showCase(id,pushState=true){   window._currentCase=id;
+function showCase(id,pushState=true){
+  window._currentCase=id;
   const c=CASES[id];
   setHeaderState('case');
   document.getElementById('backLabel').textContent=lang==='ru'?'Главная':'Home';
 
-  // Sidebar
   document.getElementById('caseSidebar').innerHTML=
     c.sections.map(s=>`<span class="sidebar-item" data-sid="${s.id}" onclick="jumpTo('${s.id}')">${s.title[lang]}</span>`).join('');
 
-  // Content
   const titleHTML=c.nda
     ?`*** <span class="badge" style="vertical-align:middle;margin-left:4px"><span class="badge-text">NDA</span></span>`
     :c.title;
@@ -582,6 +584,7 @@ function closeLightbox(){
   document.getElementById('lightboxImg').src='';
 }
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLightbox();});
+
 function jumpTo(id){
   const el=document.getElementById(id);
   if(el) window.scrollTo({top:el.offsetTop-80,behavior:'smooth'});
@@ -612,8 +615,8 @@ function toggleLang(){
   if(lang==='en') url.searchParams.set('lang','en');
   else url.searchParams.delete('lang');
   history.replaceState({},'',url.toString());
-      if(document.getElementById('page-case').classList.contains('active')&&window._currentCase){
-    showCase(window._currentCase);
+  if(document.getElementById('page-case').classList.contains('active')&&window._currentCase){
+    showCase(window._currentCase,false);
   }
 }
 
@@ -644,7 +647,18 @@ function applyLang(){
   s('bio-1',t.b1);s('bio-2',t.b2);s('bio-3',t.b3);s('bio-4',t.b4);s('bio-5',t.b5);
 }
 
-(function(){   if(localStorage.getItem('theme')==='dark')document.documentElement.setAttribute('data-theme','dark');   const urlLang=new URLSearchParams(window.location.search).get('lang');   if(urlLang==='en'&&lang!=='en'){lang='en';document.getElementById('langBtn').textContent='EN';document.getElementById('langBtn2').textContent='EN';applyLang();}   const hash=window.location.hash.replace('#','');   if(hash&&hash.startsWith('case-')){     const caseId=hash.replace('case-','');     if(CASES[caseId]) showCase(caseId,false);   } else if(hash&&['home','about','cv','concepts'].includes(hash)){     showPage(hash,null,false);   } })();
+(function(){
+  if(localStorage.getItem('theme')==='dark')document.documentElement.setAttribute('data-theme','dark');
+  const urlLang=new URLSearchParams(window.location.search).get('lang');
+  if(urlLang==='en'&&lang!=='en'){lang='en';document.getElementById('langBtn').textContent='EN';document.getElementById('langBtn2').textContent='EN';applyLang();}
+  const hash=window.location.hash.replace('#','');
+  if(hash&&hash.startsWith('case-')){
+    const caseId=hash.replace('case-','');
+    if(CASES[caseId]) showCase(caseId,false);
+  } else if(hash&&['home','about','cv','concepts'].includes(hash)){
+    showPage(hash,null,false);
+  }
+})();
 </script>
 </body>
 </html>
