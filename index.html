@@ -577,7 +577,11 @@ function ri(t,img,imgs,caps){
   }
   return'';
 }
-
+  
+  document.querySelectorAll('.concept-imgs img').forEach(img=>{
+  img.style.cursor='zoom-in';
+  img.addEventListener('click',()=>openLightbox(img.src));
+});
 function openLightbox(src){
   document.getElementById('lightboxImg').src=src;
   document.getElementById('lightbox').classList.add('open');
