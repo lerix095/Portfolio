@@ -256,9 +256,12 @@ img.scr-l,img.scr-r,img.scr-c{object-fit:cover;background:transparent}
   .case-sidebar{display:none!important}
 
   /* Cases list */
-  .case-info{width:auto;flex:1;margin-left:8px}
-  .case-row{height:auto;min-height:44px}
-  .case-name{white-space:normal}
+  .case-row{height:auto;min-height:44px;display:flex;align-items:center}
+  .case-type{width:80px;min-width:80px;max-width:80px;flex-shrink:0}
+  .case-info{display:flex;align-items:center;justify-content:space-between;flex:1;margin-left:20px;width:0;min-width:0}
+  .case-info .case-name-wrap{flex:1;min-width:0}
+  .case-name{font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .case-cat{font-size:14px;white-space:nowrap;flex-shrink:0;margin-left:8px}
 
   /* Full-width web images */
   .img-wrap{margin:0}
@@ -298,9 +301,9 @@ img.scr-l,img.scr-r,img.scr-c{object-fit:cover;background:transparent}
 
 @media(max-width:540px){
   .nav-links{gap:12px}
-  .case-row{flex-wrap:wrap;gap:4px}
+  .case-row{flex-wrap:nowrap}
   .case-type{font-size:12px}
-  .case-info{flex-direction:column;align-items:flex-start;gap:2px}
+  .case-info{flex-direction:row;align-items:center;justify-content:space-between}
   .case-cat{font-size:12px}
 }
 </style>
